@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Universe ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap');
+
+:root {
+  --pink:#e88bb6;
+  --deep:#bd6694;
+  --light:#fff0f6;
+  --text:#80556b;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  font-family:'Nunito','Noto Sans Thai',sans-serif;
+  background:linear-gradient(145deg,#ffe4ef,#fff8f5,#f5e6ff);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button {
+  font-family:inherit;
+  cursor:pointer;
+  border:none;
+  transition:.2s;
+}
+
+button:active {
+  transform:scale(.96);
+}
+
+.hidden {
+  display:none !important;
+}
+
+#app {
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:100px;
+}
+
+header {
+  padding:24px 20px 10px;
+  text-align:center;
+}
+
+.logo {
+  font-size:23px;
+  font-weight:800;
+  color:var(--deep);
+}
+
+.subtitle {
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:.7;
+}
+
+.page {
+  padding:15px 18px;
+}
+
+.card {
+  background:rgba(255,255,255,.85);
+  border:2px solid white;
+  border-radius:27px;
+  padding:23px;
+  box-shadow:0 8px 25px #d99cba30;
+  margin-bottom:18px;
+}
+
+.hero {
+  text-align:center;
+  padding:35px 25px;
+  margin-top:20px;
+}
+
+.cat {
+  font-size:82px;
+  animation:float 3s ease-in-out infinite;
+}
+
+.smalltitle {
+  letter-spacing:3px;
+  font-size:11px;
+  color:#c58baa;
+  font-weight:800;
+}
+
+h1 {
+  font-size:32px;
+  color:var(--deep);
+  margin:12px 0;
+  line-height:1.35;
+}
+
+h2 {
+  color:var(--deep);
+  font-size:23px;
+  margin-top:0;
+}
+
+h3 {
+  margin:0 0 6px;
+  font-size:16px;
+}
+
+p {
+  line-height:1.8;
+}
+
+.muted {
+  font-size:13px;
+  opacity:.7;
+}
+
+.primary {
+  background:linear-gradient(135deg,#ef9ec5,#d982ae);
+  color:white;
+  border-radius:50px;
+  padding:15px 25px;
+  font-weight:800;
+  box-shadow:0 6px 15px #df91b633;
+}
+
+.secondary {
+  background:#fce3ef;
+  color:#b66d94;
+  border-radius:50px;
+  padding:12px 18px;
+  font-weight:800;
+}
+
+.starbox {
+  background:linear-gradient(135deg,#fff3cc,#ffe7ef);
+  border:2px solid white;
+  border-radius:25px;
+  padding:23px;
+  text-align:center;
+  margin:18px 0;
+}
+
+.starcount {
+  font-size:38px;
+  font-weight:800;
+  color:#d58c52;
+}
+
+.starlabel {
+  font-size:12px;
+  letter-spacing:3px;
+}
+
+.nav {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:10;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px);
+  border-top:2px solid #fff;
+  display:flex;
+  justify-content:center;
+}
+
+.navinner {
+  max-width:520px;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  padding:9px 3px;
+}
+
+.nav button {
+  background:transparent;
+  color:#b888a3;
+  font-size:11px;
+  font-weight:800;
+  padding:7px 5px;
+  border-radius:14px;
+}
+
+.nav button.active {
+  background:#ffe5f0;
+  color:#bd6694;
+}
+
+.navicon {
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.missionrow {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  background:#fff;
+  border:2px solid #fff;
+  border-radius:20px;
+  margin:12px 0;
+  box-shadow:0 4px 12px #e3a5c522;
+}
+
+.missionemoji {
+  font-size:30px;
+  min-width:42px;
+  text-align:center;
+}
+
+.missioninfo {
+  flex:1;
+  min-width:0;
+}
+
+.missioninfo p {
+  margin:2px 0;
+  font-size:12px;
+}
+
+.missionrow button {
+  padding:10px 12px;
+  font-size:12px;
+  flex-shrink:0;
+}
+
+.rewardrow {
+  background:white;
+  border-radius:22px;
+  padding:17px;
+  margin:13px 0;
+  border:2px solid white;
+  text-align:center;
+}
+
+.rewardemoji {
+  font-size:45px;
+  margin-bottom:5px;
+}
+
+.rewardcost {
+  color:#d69b59;
+  font-weight:800;
+  margin:10px 0;
+}
+
+.historyrow {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 5px;
+  border-bottom:1px solid #f4dfeb;
+  align-items:center;
+}
+
+.historyrow:last-child {
+  border-bottom:none;
+}
+
+.plus {
+  color:#65a77b;
+  font-weight:800;
+}
+
+.minus {
+  color:#d57a9d;
+  font-weight:800;
+}
+
+.badge {
+  background:#fff0f6;
+  color:#bd6694;
+  border-radius:30px;
+  padding:5px 10px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.center {
+  text-align:center;
+}
+
+.decor {
+  position:fixed;
+  opacity:.6;
+  font-size:23px;
+  pointer-events:none;
+  z-index:0;
+}
+
+.decor1 {top:10%;left:3%;}
+.decor2 {top:23%;right:4%;}
+.decor3 {bottom:14%;left:5%;}
+.decor4 {bottom:22%;right:4%;}
+
+.empty {
+  text-align:center;
+  padding:25px;
+  opacity:.65;
+}
+
+@keyframes float {
+  0%,100% {transform:translateY(0);}
+  50% {transform:translateY(-10px);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="decor decor1">✨</div>
+<div class="decor decor2">💗</div>
+<div class="decor decor3">🌷</div>
+<div class="decor decor4">⭐</div>
+
+<div id="app">
+
+<header>
+  <div class="logo">Our Little Universe ♡</div>
+  <div class="subtitle">A LITTLE WORLD MADE WITH LOVE</div>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page">
+
+  <div class="card hero">
+
+    <div class="cat">🐱🎀</div>
+
+    <p class="smalltitle">A LITTLE UNIVERSE FOR YOU</p>
+
+    <h1>Welcome,<br>My Love ♡</h1>
+
+    <p>
+      ทุกความพยายามของเธอ<br>
+      มีดาวดวงเล็ก ๆ รออยู่เสมอ
+    </p>
+
+    <div style="font-size:48px;margin:20px">⭐</div>
+
+    <p>
+      เก็บดาวให้ครบ<br>
+      เพื่อแลกกับรางวัลสุดน่ารักกันนะ
+    </p>
+
+    <button class="primary" onclick="navigate('missions')">
+      Let's Begin ✨
+    </button>
+
+    <p class="muted">made with love ♡</p>
+
+  </div>
+
+  <div class="card center">
+
+    <h2>โลกใบเล็กของเรา 🌷</h2>
+
+    <p>
+      ทำภารกิจสะสมดาว<br>
+      แล้วแลกเป็นสิ่งที่อยากได้กันนะ
+    </p>
+
+    <button class="secondary" onclick="navigate('rewards')">
+      ดูของรางวัล 🎁
+    </button>
+
+  </div>
+
+</section>
+
+<!-- MISSIONS -->
+<section id="missions" class="page hidden">
+
+  <div class="card">
+
+    <p class="smalltitle">YOUR DAILY MISSIONS</p>
+
+    <h1>ห้องภารกิจ ♡</h1>
+
+    <p class="muted">
+      ทำภารกิจเล็ก ๆ เพื่อรับดาวกันนะ
+    </p>
+
+    <div class="starbox">
+
+      <div class="starlabel">ดาวที่มีอยู่</div>
+
+      <div class="starcount">
+        ⭐ <span id="missionStars">0</span>
+      </div>
+
+    </div>
+
+    <div id="missionList"></div>
+
+  </div>
+
+</section>
+
+<!-- WALLET -->
+<section id="wallet" class="page hidden">
+
+  <div class="card center">
+
+    <p class="smalltitle">YOUR COLLECTION</p>
+
+    <h1>ดาวของฉัน ♡</h1>
+
+    <div class="starbox">
+
+      <div class="starlabel">ดาวสะสมทั้งหมด</div>
+
+      <div class="starcount">
+        ⭐ <span id="walletStars">0</span>
+      </div>
+
+    </div>
+
+    <div class="cat">🐱</div>
+
+    <p>
+      ทุกดาวคือความพยายาม<br>
+      ที่น่าภูมิใจของเธอเลยนะ
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <h2>การเดินทางของดวงดาว ✨</h2>
+
+    <div id="walletHistory"></div>
+
+  </div>
+
+</section>
+
+<!-- REWARDS -->
+<section id="rewards" class="page hidden">
+
+  <div class="card">
+
+    <p class="smalltitle">A SHOP FULL OF LOVE</p>
+
+    <h1>ร้านแลกรางวัล ♡</h1>
+
+    <p class="muted">
+      เก็บดาวแล้วแลกรางวัลที่อยากได้เลย!
+    </p>
+
+    <div class="starbox">
+
+      <div class="starlabel">ดาวที่ใช้ได้</div>
+
+      <div class="starcount">
+        ⭐ <span id="rewardStars">0</span>
+      </div>
+
+    </div>
+
+    <div id="rewardList"></div>
+
+  </div>
+
+</section>
+
+<!-- HISTORY -->
+<section id="history" class="page hidden">
+
+  <div class="card">
+
+    <p class="smalltitle">EVERY LITTLE MOMENT</p>
+
+    <h1>ประวัติของฉัน ♡</h1>
+
+    <p class="muted">
+      ดูประวัติการรับดาวและแลกรางวัล
+    </p>
+
+    <div id="allHistory"></div>
+
+  </div>
+
+</section>
+
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+
+  <div class="navinner">
+
+    <button id="navhome" onclick="navigate('home')">
+      <span class="navicon">🏠</span>Home
+    </button>
+
+    <button id="navmissions" onclick="navigate('missions')">
+      <span class="navicon">📝</span>ภารกิจ
+    </button>
+
+    <button id="navwallet" onclick="navigate('wallet')">
+      <span class="navicon">⭐</span>ดาว
+    </button>
+
+    <button id="navrewards" onclick="navigate('rewards')">
+      <span class="navicon">🎁</span>รางวัล
+    </button>
+
+    <button id="navhistory" onclick="navigate('history')">
+      <span class="navicon">📖</span>ประวัติ
+    </button>
+
+  </div>
+
+</nav>
+
+<script>
+
+/* STORAGE */
+
+function read(key,fallback) {
+  try {
+    const data=localStorage.getItem(key);
+    return data===null ? fallback : JSON.parse(data);
+  } catch(e) {
+    return fallback;
+  }
+}
+
+function save(key,value) {
+  localStorage.setItem(key,JSON.stringify(value));
+}
+
+let balance=read("universe_balance",0);
+let history=read("universe_history",[]);
+let claimed=read("universe_claimed",{});
+
+/* DATE */
+
+function today() {
+  const d=new Date();
+  return d.getFullYear()+"-"+
+    String(d.getMonth()+1).padStart(2,"0")+"-"+
+    String(d.getDate()).padStart(2,"0");
+}
+
+/* MISSIONS */
+
+const missionsData = [
+
+  {
+    id:"study",
+    emoji:"📚",
+    name:"อ่านหนังสือ / ทำการบ้าน",
+    description:"ตั้งใจเรียนหรือทำงานที่ได้รับมอบหมาย",
+    stars:40
+  },
+
+  {
+    id:"tidy",
+    emoji:"🧸",
+    name:"เก็บห้องให้เรียบร้อย",
+    description:"จัดห้องหรือเก็บของให้เป็นระเบียบ",
+    stars:20
+  },
+
+  {
+    id:"water",
+    emoji:"💧",
+    name:"ดื่มน้ำให้เพียงพอ",
+    description:"ดูแลตัวเองด้วยการดื่มน้ำ",
+    stars:10
+  },
+
+  {
+    id:"kind",
+    emoji:"💗",
+    name:"วันนี้ใจดีเป็นพิเศษ",
+    description:"ทำสิ่งดี ๆ หรือใจดีกับคนรอบข้าง",
+    stars:30
+  },
+
+  {
+    id:"exercise",
+    emoji:"🏃",
+    name:"ออกกำลังกาย",
+    description:"ขยับร่างกายหรือออกไปเดินเล่น",
+    stars:30
+  },
+
+  {
+    id:"sleep",
+    emoji:"🌙",
+    name:"นอนพักผ่อนให้เพียงพอ",
+    description:"เข้านอนและพักผ่อนให้เหมาะสม",
+    stars:30
+  },
+
+  {
+    id:"language",
+    emoji:"📝",
+    name:"เรียนรู้สิ่งใหม่",
+    description:"เรียนรู้สิ่งใหม่ ๆ ในวันนี้",
+    stars:40
+  },
+
+  {
+    id:"happy",
+    emoji:"😸",
+    name:"ทำสิ่งที่ทำให้ตัวเองมีความสุข",
+    description:"หาเวลาทำสิ่งที่ตัวเองชอบ",
+    stars:20
+  },
+
+  {
+    id:"hug",
+    emoji:"💌",
+    name:"ส่งข้อความหวาน ๆ ให้แฟน",
+    description:"ส่งข้อความบอกรักหรือคิดถึง",
+    stars:20
+  },
+
+  {
+    id:"noangry",
+    emoji:"🐰",
+    name:"ใจเย็นและไม่งอแง",
+    description:"พยายามใจเย็นและสื่อสารดี ๆ",
+    stars:30
+  }
+
+];
+
+/* REWARDS */
+
+const rewardsData = [
+
+  {
+    id:"sushi",
+    emoji:"🍣",
+    name:"พาไปกิน Sushiro",
+    description:"ไปกินซูชิด้วยกันตามใจเลย",
+    cost:2000
+  },
+
+  {
+    id:"shabu",
+    emoji:"🍲",
+    name:"พาไปกินชาบู",
+    description:"ชาบูหนึ่งมื้อสุดแสนอร่อย",
+    cost:1500
+  },
+
+  {
+    id:"movie",
+    emoji:"🎬",
+    name:"Movie Date ตามใจ 1 วัน",
+    description:"วันนี้อยากทำอะไรหรือดูอะไรเลือกได้เลย",
+    cost:2500
+  },
+
+  {
+    id:"icecream",
+    emoji:"🍦",
+    name:"พาไปกินไอติม",
+    description:"เลือกไอติมรสโปรดได้เลย",
+    cost:400
+  },
+
+  {
+    id:"cosmetics",
+    emoji:"💄",
+    name:"แลกเครื่องสำอาง 1 อย่าง",
+    description:"เลือกเครื่องสำอางที่อยากได้ 1 ชิ้น",
+    cost:1000
+  }
+
+];
+
+/* NAVIGATION */
+
+function navigate(page) {
+
+  const pages=[
+    "home",
+    "missions",
+    "wallet",
+    "rewards",
+    "history"
+  ];
+
+  pages.forEach(p=>{
+    document.getElementById(p).classList.add("hidden");
+  });
+
+  document.getElementById(page).classList.remove("hidden");
+
+  pages.forEach(p=>{
+    const btn=document.getElementById("nav"+p);
+    if(btn) btn.classList.remove("active");
+  });
+
+  const active=document.getElementById("nav"+page);
+  if(active) active.classList.add("active");
+
+  refresh();
+
+  window.scrollTo(0,0);
+}
+
+/* CLAIM MISSIONS */
+
+function hasClaimed(id) {
+  return claimed[today()] &&
+    claimed[today()].includes(id);
+}
+
+function claimMission(id) {
+
+  const task=missionsData.find(t=>t.id===id);
+
+  if(hasClaimed(id)) {
+    alert("ภารกิจนี้รับดาวไปแล้ววันนี้นะ ♡");
+    return;
+  }
+
+  balance+=task.stars;
+
+  if(!claimed[today()]) {
+    claimed[today()]=[];
+  }
+
+  claimed[today()].push(id);
+
+  history.unshift({
+    type:"earn",
+    name:task.name,
+    amount:task.stars,
+    date:today(),
+    emoji:task.emoji
+  });
+
+  save("universe_balance",balance);
+  save("universe_claimed",claimed);
+  save("universe_history",history);
+
+  alert("เก่งมาก! ได้รับ "+task.stars+" ดาว ⭐");
+
+  refresh();
+}
+
+/* REDEEM REWARDS */
+
+function redeem(id) {
+
+  const reward=rewardsData.find(r=>r.id===id);
+
+  if(balance<reward.cost) {
+    alert("ดาวยังไม่เพียงพอนะ เก็บเพิ่มอีกนิดนะคะ ♡");
+    return;
+  }
+
+  const ok=confirm(
+    "ใช้ "+reward.cost+
+    " ดาว เพื่อแลก "+reward.name+" ใช่ไหม?"
+  );
+
+  if(!ok) return;
+
+  balance-=reward.cost;
+
+  history.unshift({
+    type:"spend",
+    name:reward.name,
+    amount:reward.cost,
+    date:today(),
+    emoji:reward.emoji
+  });
+
+  save("universe_balance",balance);
+  save("universe_history",history);
+
+  alert("แลกรางวัลสำเร็จแล้ว! ขอให้มีความสุขนะ ♡");
+
+  refresh();
+}
+
+/* DISPLAY MISSIONS */
+
+function renderMissions() {
+
+  const container=document.getElementById("missionList");
+
+  container.innerHTML="";
+
+  missionsData.forEach(task=>{
+
+    const done=hasClaimed(task.id);
+
+    container.innerHTML+=`
+
+      <div class="missionrow">
+
+        <div class="missionemoji">
+          ${task.emoji}
+        </div>
+
+        <div class="missioninfo">
+
+          <h3>${task.name}</h3>
+
+          <p>${task.description}</p>
+
+          <span class="badge">
+            ⭐ ${task.stars} ดาว
+          </span>
+
+        </div>
+
+        <button
+          class="${done ? 'secondary' : 'primary'}"
+          ${done ? 'disabled' : ''}
+          onclick="claimMission('${task.id}')">
+
+          ${done ? 'รับแล้ว ✓' : 'รับดาว'}
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+}
+
+/* DISPLAY REWARDS */
+
+function renderRewards() {
+
+  const container=document.getElementById("rewardList");
+
+  container.innerHTML="";
+
+  rewardsData.forEach(reward=>{
+
+    container.innerHTML+=`
+
+      <div class="rewardrow">
+
+        <div class="rewardemoji">
+          ${reward.emoji}
+        </div>
+
+        <h3>${reward.name}</h3>
+
+        <p class="muted">
+          ${reward.description}
+        </p>
+
+        <div class="rewardcost">
+          ⭐ ${reward.cost.toLocaleString()} ดาว
+        </div>
+
+        <button
+          class="primary"
+          onclick="redeem('${reward.id}')">
+
+          แลกรางวัล ♡
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+}
+
+/* HISTORY */
+
+function formatDate(date) {
+  const parts=date.split("-");
+  return parts[2]+"/"+parts[1]+"/"+parts[0];
+}
+
+function renderHistory(targetId,limit) {
+
+  const container=document.getElementById(targetId);
+
+  if(!container) return;
+
+  container.innerHTML="";
+
+  const entries=limit ? history.slice(0,limit) : history;
+
+  if(entries.length===0) {
+
+    container.innerHTML=`
+
+      <div class="empty">
+
+        <div style="font-size:40px">🐱</div>
+
+        ยังไม่มีประวัติเลย<br>
+        มาเริ่มสะสมดาวกันนะ ♡
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+  entries.forEach(item=>{
+
+    const isEarn=item.type==="earn";
+
+    container.innerHTML+=`
+
+      <div class="historyrow">
+
+        <div>
+
+          <strong>
+            ${item.emoji || '⭐'} ${item.name}
+          </strong>
+
+          <div class="muted">
+            ${formatDate(item.date)}
+          </div>
+
+        </div>
+
+        <div class="${isEarn ? 'plus' : 'minus'}">
+
+          ${isEarn ? '+' : '-'}
+          ${item.amount.toLocaleString()} ⭐
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+}
+
+/* REFRESH */
+
+function refresh() {
+
+  document.getElementById("missionStars").textContent=
+    balance.toLocaleString();
+
+  document.getElementById("walletStars").textContent=
+    balance.toLocaleString();
+
+  document.getElementById("rewardStars").textContent=
+    balance.toLocaleString();
+
+  renderMissions();
+  renderRewards();
+  renderHistory("walletHistory",5);
+  renderHistory("allHistory");
+}
+
+/* START */
+
+refresh();
+navigate("home");
+
+</script>
+
+</body>
+</html>
